@@ -28,10 +28,8 @@ app.on('quit', () => {
   fs.removeSync(tmpdir)
 })
 
-// do not quit if tests open and close windows
-app.on('window-all-closed', () => {})
-
-app.on('ready', () => {
+app.on('ready', function () {
+  opts.preload.forEach(script => { require(script) })
   if (!opts.renderer) {
     mocha.run(opts, count => app.exit(count))
   } else {
@@ -54,7 +52,7 @@ app.on('ready', () => {
       } else {
         setTimeout(() => {
           win.webContents.send('mocha-start')
-        }, 250);
+        }, 350)
       }
     })
 
