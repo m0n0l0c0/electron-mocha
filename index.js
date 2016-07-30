@@ -33,6 +33,7 @@ app.on('quit', function () {
 })
 
 app.on('ready', function () {
+  opts.preload.forEach(script => { require(script) })
   if (!opts.renderer) {
     // do not quit if tests open and close windows
     app.on('will-quit', event => {
@@ -59,7 +60,7 @@ app.on('ready', function () {
       } else {
         setTimeout(() => {
           win.webContents.send('mocha-start')
-        }, 250);
+        }, 350)
       }
     })
 
