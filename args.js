@@ -33,7 +33,7 @@ function parse (argv) {
     .option('--recursive', 'include sub directories')
     .option('--renderer', 'run tests in renderer process')
     .option('--preload <name>', 'preload the given script in main process', modules, [])
-    .option('--preloadRender <name>', 'preload the given script in renderer process', modules, [])
+    .option('--preloadRenderer <name>', 'preload the given script in renderer process', modules, [])
 
   module.paths.push(cwd, join(cwd, 'node_modules'))
 

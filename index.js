@@ -67,7 +67,7 @@ app.on('ready', function () {
     var indexPath = path.resolve(path.join(__dirname, './renderer/index.html'))
     // undocumented call in electron-window
     win._loadURLWithArgs(indexPath, opts, function () {})
-    //win.showURL(indexPath, opts)
+    // win.showURL(indexPath, opts)
     win.emit('ready-to-show')
     ipc.on('mocha-done', function (event, count) {
       win.on('closed', () => app.exit(count))
