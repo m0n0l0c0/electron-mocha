@@ -1,7 +1,8 @@
 require('./console')
 var mocha = require('../mocha')
 var { ipcRenderer: ipc } = require('electron')
-
+var EE = require('eventemitter3')
+window.emitter = new EE()
 // Expose mocha
 window.mocha = require('mocha')
 
@@ -26,6 +27,7 @@ opts.preloadRender.forEach(function (script) {
 
 ipc.on('mocha-start', () => {
   mocha.run(opts, function (failureCount) {
+    window.emitter.emit('mocha-cover', window.__coverage__)
     ipc.send('mocha-done', failureCount)
   })
 })
